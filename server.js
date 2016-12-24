@@ -9,6 +9,13 @@ var regExp = /^(http[s]?:\/\/)(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}/;
 //For getting the port number.
 app.set('port', (process.env.PORT || 5000))
 
+//requied to fetch static pages.
+app.use(express.static('.'));
+
+app.get("/", function(req, res){
+	res.send('index.html');
+})
+
 app.get("/new/:url*",function(req,res){
   //Get the url to be stored.
   var url = req.url.slice(5);
